@@ -21,7 +21,10 @@ export default class NewTaskForm extends Component {
     const { inputValue } = this.state
 
     e.preventDefault()
-    addItem(inputValue)
+    if (!inputValue.trim().length) {
+      return
+    }
+    addItem(inputValue.trim())
     this.setState({ inputValue: '' })
   }
 
