@@ -4,11 +4,23 @@ import PropTypes from 'prop-types'
 import Task from '../Task'
 import './TaskList.css'
 
-function TaskList({ todos, onDeleted, onToggleDone, onTodoChange }) {
+function TaskList({ todos, timers, onDeleted, onToggleDone, onTodoChange, startCountdown, stopCountdown }) {
   const elems = todos.map((todo) => {
     const { id } = todo
+    const timer = timers.find((item) => item.todoId === id)
 
-    return <Task key={id} todo={todo} onDeleted={onDeleted} onToggleDone={onToggleDone} onTodoChange={onTodoChange} />
+    return (
+      <Task
+        key={id}
+        todo={todo}
+        timer={timer}
+        onDeleted={onDeleted}
+        onToggleDone={onToggleDone}
+        onTodoChange={onTodoChange}
+        startCountdown={startCountdown}
+        stopCountdown={stopCountdown}
+      />
+    )
   })
 
   return <ul className="todo-list">{elems}</ul>
