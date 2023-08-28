@@ -37,8 +37,6 @@ export default class App extends Component {
     this.setState(({ todos }) => {
       const newArr = todos.filter((todo) => todo.done === false)
 
-      // нужно как-то чистить таймер clearInterval
-
       return {
         todos: [...newArr],
       }
@@ -76,7 +74,7 @@ export default class App extends Component {
     })
   }
 
-  onTodoChange = (id, newLabel, minutesS, secondsS) => {
+  onTodoChange = (id, newLabel, minutesS = 0, secondsS = 0) => {
     this.setState(({ todos, timers }) => {
       const idx = todos.findIndex((el) => el.id === id)
       const idTimer = timers.findIndex((el) => el.todoId === id)

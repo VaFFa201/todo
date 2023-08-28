@@ -118,12 +118,16 @@ Task.defaultProps = {
   onTodoChange: () => {},
   onToggleDone: () => {},
   onDeleted: () => {},
+  startCountdown: () => {},
+  stopCountdown: () => {},
 }
 
 Task.propTypes = {
   onTodoChange: PropTypes.func,
   onToggleDone: PropTypes.func,
   onDeleted: PropTypes.func,
+  startCountdown: PropTypes.func,
+  stopCountdown: PropTypes.func,
   todo: PropTypes.shape({
     id: PropTypes.number,
     label: PropTypes.string,

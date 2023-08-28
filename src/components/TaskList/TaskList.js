@@ -30,13 +30,18 @@ TaskList.defaultProps = {
   onDeleted: () => {},
   onToggleDone: () => {},
   onTodoChange: () => {},
+  startCountdown: () => {},
+  stopCountdown: () => {},
 }
 
 TaskList.protoTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  timers: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDeleted: PropTypes.func,
   onToggleDone: PropTypes.func,
   onTodoChange: PropTypes.func,
+  startCountdown: PropTypes.func,
+  stopCountdown: PropTypes.func,
 }
 
 export default TaskList

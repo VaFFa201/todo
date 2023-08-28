@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 function Timer({ minutes, seconds, todoId, startCountdown, stopCountdown }) {
   return (
@@ -24,6 +25,21 @@ function Timer({ minutes, seconds, todoId, startCountdown, stopCountdown }) {
       {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
     </span>
   )
+}
+
+Timer.defaultProps = {
+  startCountdown: () => {},
+  stopCountdown: () => {},
+  minutes: 0,
+  seconds: 0,
+}
+
+Timer.propTypes = {
+  startCountdown: PropTypes.func,
+  stopCountdown: PropTypes.func,
+  minutes: PropTypes.number(),
+  seconds: PropTypes.number(),
+  todoId: PropTypes.number().isRequired,
 }
 
 export default Timer
