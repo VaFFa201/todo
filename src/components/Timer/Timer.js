@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Timer({ minutes, seconds, todoId, startCountdown, stopCountdown }) {
+function Timer({ minutes = 0, seconds = 0, todoId, startCountdown, stopCountdown }) {
   return (
     <span className="description">
       <button
@@ -30,16 +30,12 @@ function Timer({ minutes, seconds, todoId, startCountdown, stopCountdown }) {
 Timer.defaultProps = {
   startCountdown: () => {},
   stopCountdown: () => {},
-  minutes: 0,
-  seconds: 0,
 }
 
 Timer.propTypes = {
   startCountdown: PropTypes.func,
   stopCountdown: PropTypes.func,
-  minutes: PropTypes.number(),
-  seconds: PropTypes.number(),
-  todoId: PropTypes.number().isRequired,
+  todoId: PropTypes.number.isRequired,
 }
 
 export default Timer
