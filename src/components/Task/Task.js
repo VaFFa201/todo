@@ -52,6 +52,12 @@ export default class Task extends Component {
     const { id } = todo
 
     e.preventDefault()
+
+    if (Number(minutesS) >= 60 || Number(secondsS) >= 60) {
+      alert('Неверные значения минут или секунд')
+      return
+    }
+
     onTodoChange(id, inputValue, minutesS, secondsS)
     this.toggleEditState()
   }

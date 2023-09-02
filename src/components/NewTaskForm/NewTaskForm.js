@@ -35,6 +35,11 @@ export default class NewTaskForm extends Component {
     const { inputValue, minutes, seconds } = this.state
 
     e.preventDefault()
+    if (Number(minutes) >= 60 || Number(seconds) >= 60) {
+      alert('Неверные значения минут или секунд')
+      return
+    }
+
     if (!inputValue.trim().length) {
       return
     }
