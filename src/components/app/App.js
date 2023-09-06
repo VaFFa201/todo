@@ -100,9 +100,31 @@ function App() {
     const newTimerId = setInterval(() => {
       setTimers((timersList) => {
         const newTimersList = [...timersList]
-        newTimersList[idTimer].seconds -= 1
-        console.log(newTimersList[idTimer].seconds)
-        return newTimersList
+        const timer = newTimersList[idTimer]
+
+        const { timerId, minutes, seconds } = timer
+
+        if (minutes === 0 && seconds === 0) {
+          return [
+            ...newTimersList.slice(0, idTimer),
+            { ...timer, timerId: clearInterval(timerId) },
+            ...newTimersList.slice(idTimer + 1),
+          ]
+        }
+
+        if (minutes > 0 && seconds === 0) {
+          return [
+            ...newTimersList.slice(0, idTimer),
+            { ...timer, minutes: minutes - 1, seconds: 59 },
+            ...newTimersList.slice(idTimer + 1),
+          ]
+        }
+
+        return [
+          ...newTimersList.slice(0, idTimer),
+          { ...timer, seconds: seconds - 1 },
+          ...newTimersList.slice(idTimer + 1),
+        ]
       })
     }, 1000)
 
@@ -119,11 +141,15 @@ function App() {
 
     const { timerId } = timer
 
-    setTimers([
-      ...timers.slice(0, idTimer),
-      { ...timer, timerId: clearInterval(timerId) },
-      ...timers.slice(idTimer + 1),
-    ])
+    setTimers((timersList) => {
+      const newTimersList = [...timersList]
+
+      return [
+        ...newTimersList.slice(0, idTimer),
+        { ...timer, timerId: clearInterval(timerId) },
+        ...newTimersList.slice(idTimer + 1),
+      ]
+    })
   }
 
   const filterItems = (items, filter) => {
@@ -166,33 +192,3 @@ function App() {
 }
 
 export default App
-
-// [
-//   ...timers.slice(0, idTimer),
-//   { ...timer, timerId: newTimerId, minutes: minutes - 1, seconds: 59 },
-//   ...timers.slice(idTimer + 1),
-// ]
-
-// [
-//   ...newTimersList.slice(0, idTimer),
-//   { ...timer, timerId: newTimerId, seconds: seconds - 1 },
-//   ...newTimersList.slice(idTimer + 1),
-// ]
-
-// остатки таймера
-// const timer = timers[idTimer]
-
-// const { timerId, minutes, seconds } = timer
-
-// if (minutes === 0 && seconds === 0) {
-//   clearInterval(timerId)
-//   return
-// }
-// if (minutes > 0 && seconds === 0) {
-//   setTimers((timersList) => {
-//     const newTimersList = [...timersList]
-//     newTimersList[idTimer].minutes -= 1
-//     newTimersList[idTimer].seconds = 59
-//     return newTimersList
-//   })
-// }

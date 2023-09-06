@@ -30,12 +30,16 @@ function Timer({ minutes = 0, seconds = 0, timerId, todoId, startCountdown, stop
 Timer.defaultProps = {
   startCountdown: () => {},
   stopCountdown: () => {},
+  minutes: 0,
+  seconds: 0,
 }
 
 Timer.propTypes = {
   startCountdown: PropTypes.func,
   stopCountdown: PropTypes.func,
   todoId: PropTypes.number.isRequired,
+  minutes: PropTypes.number,
+  seconds: PropTypes.number,
 }
 
 export default Timer
