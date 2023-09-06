@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Timer({ minutes = 0, seconds = 0, todoId, startCountdown, stopCountdown }) {
+function Timer({ minutes = 0, seconds = 0, timerId, todoId, startCountdown, stopCountdown }) {
   return (
     <span className="description">
       <button
         type="button"
         className="icon icon-play"
         onClick={() => {
-          startCountdown(todoId)
+          startCountdown(todoId, timerId)
         }}
       >
         <span className="hidden">Play</span>

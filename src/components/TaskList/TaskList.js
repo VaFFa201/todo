@@ -34,7 +34,7 @@ TaskList.defaultProps = {
   stopCountdown: () => {},
 }
 
-TaskList.protoTypes = {
+TaskList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
   timers: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDeleted: PropTypes.func,
